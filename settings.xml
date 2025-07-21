@@ -1,12 +1,27 @@
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 
-                              https://maven.apache.org/xsd/settings-1.0.0.xsd">
-  <servers>
-    <server>
-      <id>bubu-afk</id>
-      <username>${env.GITHUB_USERNAME}</username>
-      <password>${env.GITHUB_TOKEN}</password>
-    </server>
-  </servers>
+<settings>
+  <profiles>
+    <profile>
+      <id>jobA</id>
+      <activation>
+        <property><name>runJob</name><value>A</value></property>
+      </activation>
+      <properties>
+        <execute.job>A</execute.job>
+      </properties>
+      <!-- configure plugins or repos for job A -->
+    </profile>
+    <profile>
+      <id>jobB</id>
+      <activation>
+        <property><name>runJob</name><value>B</value></name>
+      </activation>
+      <properties>
+        <execute.job>B</execute.job>
+      </properties>
+      <!-- config for job B -->
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <!-- could preactivate one profile -->
+  </activeProfiles>
 </settings>
