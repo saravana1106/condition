@@ -1,0 +1,28 @@
+name: Conditional Jobs Workflow
+on:
+  workflow_dispatch:   # manual trigger
+  push:
+    branches:
+      - '**'
+
+jobs:
+  job_a:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job A
+        run: echo "✅ Executing Job A on main branch"
+
+  job_b:
+    if: ${{ github.ref == 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job B
+        run: echo "🚧 Executing Job B on develop branch"
+
+  job_c:
+    if: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job C
+        run: echo "🔁 Executing Job C on any other branch"
