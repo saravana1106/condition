@@ -1,20 +1,70 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-         http://maven.apache.org/xsd/maven-4.0.0.xsd">
-         
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.example</groupId>
-  <artifactId>myapp</artifactId>
-  <version>1.0.0</version>
-  <packaging>jar</packaging>
+<project>
+  ...
+  <profiles>
+    <profile>
+      <id>job1</id>
+      <activation>
+        <property>
+          <name>runJob</name>
+          <value>job1</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <echo>Executing Job 1</echo>
+                    <!-- Add tasks for Job 1 here -->
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-  <name>MyApp</name>
-
-  <distributionManagement>
-    <repository>
-      <id>user-name</id>
-      <url>https://maven.pkg.github.com/username/RepoName</url>
-    </repository>
-  </distributionManagement>
+    <profile>
+      <id>job2</id>
+      <activation>
+        <property>
+          <name>runJob</name>
+          <value>job2</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <echo>Executing Job 2</echo>
+                    <!-- Add tasks for Job 2 here -->
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
